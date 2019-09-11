@@ -34,10 +34,12 @@
         evaluationID = request.getParameter("evaluationID");
     }
     EvaluationDAO evaluationDAO = new EvaluationDAO();
-
+    System.out.println(1);
     if (userID.equals(evaluationDAO.getUserID(evaluationID))) {
+        System.out.println(2);
         int result = new EvaluationDAO().delete(evaluationID);
         if (result == 1) {
+            System.out.println(3);
             session.setAttribute("userID", userID);
             PrintWriter script = response.getWriter();
             script.println("<script>");
@@ -55,14 +57,12 @@
             script.close();
             return;
         }
-    } else {
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
-        script.println("alert('not your rating');");
-        script.println("history.back()");
-        script.println("</script>");
-        script.close();
-        return;
     }
+    PrintWriter script = response.getWriter();
+    script.println("<script>");
+    script.println("alert('not your post');");
+    script.println("history.back()");
+    script.println("</script>");
+    script.close();
 
 %>

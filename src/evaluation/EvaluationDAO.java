@@ -145,9 +145,11 @@ public class EvaluationDAO {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, Integer.parseInt(evaluationID));
             rs = pstmt.executeQuery();
+
             while (rs.next()) {
                 return rs.getString(1);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

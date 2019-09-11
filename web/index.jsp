@@ -95,13 +95,13 @@
         <select name="LectureDDivide" id="" class="form-control mx-1 mt-2">
           <option value="All">All</option>
           <option value="VLPA" <% if (lectureDivide.equals("VLAP")) out.println("selected"); %>>VLPA</option>
-          <option value="I&S" <% if (lectureDivide.equals("I&S")) out.println("selected"); %>>>I&S</option>
-          <option value="Div" <% if (lectureDivide.equals("DIV")) out.println("selected"); %>>>Div</option>
-        </select
+          <option value="I&S" <% if (lectureDivide.equals("I&S")) out.println("selected"); %>>I&S</option>
+          <option value="Div" <% if (lectureDivide.equals("DIV")) out.println("selected"); %>>Div</option>
+        </select>
 
         <select name="searchType" id="" class="form-control mx-1 mt-2">
           <option value="new">new</option>
-          <option value="like" <% if (lectureDivide.equals("like")) out.println("selected"); %>>>like</option>
+          <option value="like" <% if (lectureDivide.equals("like")) out.println("selected"); %>>like</option>
 
         </select>
 
