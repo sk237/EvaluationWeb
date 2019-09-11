@@ -16,9 +16,6 @@ public class EvaluationDTO {
     String creditScore;
     int likeCount;
 
-    public EvaluationDTO() {
-
-    }
     public EvaluationDTO(int evaluationID, String userID, String lectureName, String profName, int lectureYear,
                          String quarterDivide, String lectureDivide, String evaluationTitle,
                          String evaluationContent, String totalScore, String comfortableScore, String creditScore, int likeCount) {
