@@ -94,8 +94,8 @@
     }
 
     EvaluationDAO evaluationDAO = new EvaluationDAO();
-    int result = evaluationDAO.write(new EvaluationDTO(0, lectureYear, 0, userID, lectureName, profName, quarterDivide,
-            lectureDivide, evaluationTitle, evaluationContent, totalScore, comfortableScore, creditScore));
+    int result = evaluationDAO.write(new EvaluationDTO(0, userID, lectureName, profName, lectureYear ,quarterDivide,
+            lectureDivide, evaluationTitle, evaluationContent, totalScore, comfortableScore, creditScore, 0));
     if (result == -1) {
         PrintWriter script = response.getWriter();
         script.println("<script>");

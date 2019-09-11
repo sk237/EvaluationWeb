@@ -4,6 +4,8 @@ import util.DatabaseUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class EvaluationDAO {
 
@@ -34,6 +36,60 @@ public class EvaluationDAO {
                 try {if (pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
             }
             return -1; // error
+        }
+
+        public ArrayList<EvaluationDTO> getList(String lectureDivide, String searchType, String search) {
+            if (lectureDivide.equals("total")) {
+                lectureDivide = "";
+            }
+            ArrayList<EvaluationDTO>  evaluationList = null;
+            String SQL = null;
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            try {
+                SQL = "select * from evaluation";
+//                if(searchType.equals("new")) {
+//                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like " +
+//                            "? order by evaluationID";
+//                } else if (searchType.equals("like")) {
+//                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like " +
+//                            "? order by likeCount" ;
+//                }
+                conn = DatabaseUtil.getConnection();
+                pstmt = conn.prepareStatement(SQL);
+//                pstmt.setString(1, "%" + lectureDivide + "%");
+//                pstmt.setString(2, "%" + search + "%");
+                rs = pstmt.executeQuery();
+                evaluationList = new ArrayList<>();
+                while (rs.next()) {
+                    EvaluationDTO evaluation = new EvaluationDTO(
+                            rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getInt(5),
+                            rs.getString(6),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12),
+                            rs.getInt(13)
+                    );
+                    evaluationList.add(evaluation);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {if (conn != null) conn.close(); } catch (Exception e) {e.printStackTrace();}
+                try {if (pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
+                try {if (rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
+            }
+            return evaluationList; // error
         }
 
 }
