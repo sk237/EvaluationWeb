@@ -140,9 +140,9 @@
               easy <span style="color : red;"><%=evaluation.getComfortableScore()%></span>
               <span style="color: green;">like = <%=evaluation.getLikeCount()%></span>
             </div>
-            <div class="col- text-right">
-              <a onclick="return confirm('liek?')" href="./likeAction.jsp?evaluationID=">like</a>
-              <a onclick="return confirm('delete?')" href="./deleteAction.jsp?evaluationID=">delete</a>
+            <div class="col-3 text-right">
+              <a onclick="return confirm('liek?')" href="./likeAction.jsp?evaluationID=<%=evaluation.getEvaluationID()%>">like</a>
+              <a onclick="return confirm('delete?')" href="./deleteAction.jsp?evaluationID=<%=evaluation.getEvaluationID()%>">delete</a>
             </div>
           </div>
         </div>

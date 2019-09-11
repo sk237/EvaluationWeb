@@ -43,7 +43,9 @@ public class EvaluationDTO {
     public String getComfortableScore() {
         return comfortableScore;
     }
-
+    public int getEvaluationID() {
+        return evaluationID;
+    }
     public int getLectureYear() {
         return lectureYear;
     }
