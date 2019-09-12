@@ -39,9 +39,10 @@ public class EvaluationDAO {
         }
 
         public ArrayList<EvaluationDTO> getList(String lectureDivide, String searchType, String search) {
-            if (lectureDivide.equals("total")) {
+            if (lectureDivide.equals("All")) {
                 lectureDivide = "";
             }
+
             ArrayList<EvaluationDTO>  evaluationList = new ArrayList<>();
             String SQL;
             Connection conn = null;
@@ -50,16 +51,15 @@ public class EvaluationDAO {
             try {
 
                 if(searchType.equals("new")) {
-                    SQL = "select * from evaluation where evaluationID like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by evaluationID";
-
+                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by evaluationID desc";
                 } else {
-                    SQL = "select * from evaluation where evaluationID like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by likeCount";
-
+                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by likeCount desc";
                 }
                 conn = DatabaseUtil.getConnection();
                 pstmt = conn.prepareStatement(SQL);
                 pstmt.setString(1, "%" + lectureDivide + "%");
                 pstmt.setString(2, "%" + search + "%");
+                System.out.println(pstmt.toString());
                 rs = pstmt.executeQuery();
 
                 while (rs.next()) {

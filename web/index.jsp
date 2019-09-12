@@ -24,18 +24,18 @@
 <body>
 <%
   request.setCharacterEncoding("UTF-8");
-  String lectureDivide = "total";
+  String lectureDivide = "All";
   String searchType = "new";
   String search = "";
 
-  if (request.getParameter(lectureDivide) != null) {
-    lectureDivide = request.getParameter(lectureDivide);
+  if (request.getParameter("lectureDivide") != null) {
+    lectureDivide = request.getParameter("lectureDivide");
   }
-  if (request.getParameter(searchType) != null) {
-    searchType = request.getParameter(searchType);
+  if (request.getParameter("searchType") != null) {
+    searchType = request.getParameter("searchType");
   }
-  if (request.getParameter(search) != null) {
-    search = request.getParameter(search);
+  if (request.getParameter("search") != null) {
+    search = request.getParameter("search");
   }
 
   String userID = null;
@@ -92,17 +92,16 @@
     </nav>
     <section class="container">
       <form class="form-inline mt-3" method="get" action="./index.jsp">
-        <select name="LectureDDivide" id="" class="form-control mx-1 mt-2">
+        <select name="lectureDivide" id="" class="form-control mx-1 mt-2">
           <option value="All">All</option>
           <option value="VLPA" <% if (lectureDivide.equals("VLAP")) out.println("selected"); %>>VLPA</option>
           <option value="I&S" <% if (lectureDivide.equals("I&S")) out.println("selected"); %>>I&S</option>
-          <option value="Div" <% if (lectureDivide.equals("DIV")) out.println("selected"); %>>Div</option>
+          <option value="DIV" <% if (lectureDivide.equals("DIV")) out.println("selected"); %>>DIV</option>
         </select>
 
         <select name="searchType" id="" class="form-control mx-1 mt-2">
           <option value="new">new</option>
-          <option value="like" <% if (lectureDivide.equals("like")) out.println("selected"); %>>like</option>
-
+          <option value="like" <% if (searchType.equals("like")) out.println("selected"); %>>like</option>
         </select>
 
         <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="search search search">
@@ -114,7 +113,6 @@
 <%
       ArrayList<EvaluationDTO> evaluationList;
       evaluationList = new EvaluationDAO().getList(lectureDivide, searchType, search);
-
       while (!evaluationList.isEmpty()) {
           EvaluationDTO evaluation = evaluationList.remove(0);
 
@@ -143,6 +141,7 @@
             <div class="col-3 text-right">
               <a onclick="return confirm('liek?')" href="./likeAction.jsp?evaluationID=<%=evaluation.getEvaluationID()%>">like</a>
               <a onclick="return confirm('delete?')" href="./deleteAction.jsp?evaluationID=<%=evaluation.getEvaluationID()%>">delete</a>
+
             </div>
           </div>
         </div>
