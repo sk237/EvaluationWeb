@@ -8,9 +8,9 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ page import="user.*"%>
+
 <%@ page import="evaluation.*" %>
-<%@ page import="likey.*" %>
+
 <%@ page import="java.io.PrintWriter" %>
 
 <%

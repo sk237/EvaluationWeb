@@ -1,4 +1,4 @@
-<%@ page import="user.UserDAO" %>
+
 <%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: seokjoong

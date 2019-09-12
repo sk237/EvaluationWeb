@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="user.UserDAO" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: seokjoong

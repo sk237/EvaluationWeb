@@ -10,8 +10,7 @@
 <%@ page import="user.UserDAO" %>
 <%@ page import="evaluation.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.net.URL" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +106,6 @@
         <input type="text" name="search" class="form-control mx-1 mt-2" placeholder="search search search">
         <button class="btn btn-primary mx-1 mt-2" type="submit">Search</button>
         <a href="#registerModal" data-toggle="modal" class="btn btn-primary mx-1 mt-2">Rating</a>
-<%--        <a href="#reportModal" data-toggle="modal" class="btn btn-danger mx-1 mt-2">Report</a>--%>
       </form>
 
 <%
@@ -120,15 +118,18 @@
       <div class="card bg-light mt-3">
         <div class="card-header bg-light">
           <div class="row">
-            <div class="col-8 text-left"><%= evaluation.getLectureName() %>&nbsp;<smal> <%=evaluation.getProfName() %></smal></div>
+            <div class="col-8 text-left"><%= evaluation.getLectureName() %>&nbsp;
+              <smal> < <%=evaluation.getProfName() %> ></smal>
+              <small>  <%=evaluation.getLectureYear2()%>  <%=evaluation.getQuarterDivide()%> </small>
+            </div>
             <div class="col-4 text-right" >
-              total <span style="color: red;"> <%= evaluation.getTotalScore()%></span>
+              <span style="color: green;">like  <%=evaluation.getLikeCount()%></span>
             </div>
           </div>
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            <%= evaluation.getEvaluationTitle()%><small><%=evaluation.getLectureYear()%>  <%=evaluation.getQuarterDivide()%> </small>
+            <%= evaluation.getEvaluationTitle()%>
           </h5>
           <p class="card-text"><%= evaluation.getEvaluationContent()%></p>
           <div class="row">
@@ -136,7 +137,7 @@
               Tot <span style="color : red;"><%=evaluation.getTotalScore()%></span>
               lec <span style="color : red;"><%=evaluation.getCreditScore()%></span>
               easy <span style="color : red;"><%=evaluation.getComfortableScore()%></span>
-              <span style="color: green;">like = <%=evaluation.getLikeCount()%></span>
+              total <span style="color: red;"> <%= evaluation.getTotalScore()%></span>
             </div>
             <div class="col-3 text-right">
               <a onclick="return confirm('liek?')" href="./likeAction.jsp?evaluationID=<%=evaluation.getEvaluationID()%>">like</a>
@@ -152,45 +153,6 @@
 
 %>
     </section>
-<%--    <ul class="pagination justify-content-center mt-3">--%>
-<%--      <li class="page-item">--%>
-<%--<%--%>
-<%--      if(pageNumber <= 0) {--%>
-
-<%--%>--%>
-<%--        <a class="page-link disabled"> prev </a>--%>
-
-<%--<%--%>
-<%--      } else {--%>
-<%--%>--%>
-<%--        <a class="page-link" href="./index.jsp?lectureDivide=<%=URLEncoder.encode(lectureDivide, "UTF-8")%>&searchType=--%>
-<%--        <%=URLEncoder.encode(searchType, "UTF-8")%>&search<%=URLEncoder.encode(search, "UTF-8")%>&pageNumber<%=pageNumber - 1%>">--%>
-<%--          prev--%>
-<%--        </a>--%>
-<%--<%--%>
-<%--  }--%>
-<%--%>--%>
-<%--      </li>--%>
-
-<%--      <li>--%>
-<%--        <%--%>
-<%--          if(evaluationList == null || evaluationList.size() < 6) {--%>
-
-<%--        %>--%>
-<%--        <a class="page-link disabled"> next </a>--%>
-
-<%--        <%--%>
-<%--        } else {--%>
-<%--        %>--%>
-<%--        <a class="page-link" href="./index.jsp?lectureDivide=<%=URLEncoder.encode(lectureDivide, "UTF-8")%>&searchType=--%>
-<%--        <%=URLEncoder.encode(searchType, "UTF-8")%>&search<%=URLEncoder.encode(search, "UTF-8")%>&pageNumber<%=pageNumber + 1%>">--%>
-<%--          next--%>
-<%--        </a>--%>
-<%--        <%--%>
-<%--          }--%>
-<%--        %>--%>
-<%--      </li>--%>
-<%--    </ul>--%>
     <div class="card bg-light mt-3">
       <div class="card-heade bg-lightr">
         <div class="row">
@@ -302,35 +264,7 @@
         </div>
       </div>
     </div>
-<%--    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">--%>
-<%--      <div class="modal-dialog">--%>
-<%--        <div class="modal-content">--%>
-<%--          <div class="modal-header">--%>
-<%--            <h5 class="modal-title" id="modal">Report</h5>--%>
-<%--            <button type="button" class="close" aria-label="close" data-dismiss="modal">--%>
-<%--              <span aria-hidden="true">&times;</span>--%>
-<%--            </button>--%>
-<%--          </div>--%>
-<%--          <div class="modal-body">--%>
-<%--            <form action="./reportAction.jsp" method="post">--%>
 
-<%--              <div class="form-group">--%>
-<%--                <label>Report Title</label>--%>
-<%--                <input type="text" name="reportTitle" class="form-control" maxlength="30">--%>
-<%--              </div>--%>
-<%--              <div class="form-group">--%>
-<%--                <label for="">Report Content</label>--%>
-<%--                <textarea name="reportContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>--%>
-<%--              </div>--%>
-<%--              <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>--%>
-<%--                <button type="submit" class="btn btn-danger">Report</button>--%>
-<%--              </div>--%>
-<%--            </form>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-<%--    </div>--%>
     <footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF">
       Seokjoong Kim
     </footer>

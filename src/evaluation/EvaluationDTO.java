@@ -49,6 +49,9 @@ public class EvaluationDTO {
     public int getLectureYear() {
         return lectureYear;
     }
+    public int getLectureYear2() {
+        return lectureYear%100;
+    }
     public String getEvaluationTitle() {
         return evaluationTitle;
     }

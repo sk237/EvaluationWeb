@@ -17,17 +17,17 @@ public class EvaluationDAO {
             try {
                 conn = DatabaseUtil.getConnection();
                 pstmt = conn.prepareStatement(SQL);
-                pstmt.setString(1, evaluationDTO.userID);
-                pstmt.setString(2, evaluationDTO.lectureName);
-                pstmt.setString(3, evaluationDTO.profName);
+                pstmt.setString(1, evaluationDTO.userID.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(2, evaluationDTO.lectureName.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(3, evaluationDTO.profName.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
                 pstmt.setInt(4, evaluationDTO.lectureYear);
-                pstmt.setString(5, evaluationDTO.quarterDivide);
-                pstmt.setString(6, evaluationDTO.lectureDivide);
-                pstmt.setString(7, evaluationDTO.evaluationTitle);
-                pstmt.setString(8, evaluationDTO.evaluationContent);
-                pstmt.setString(9, evaluationDTO.totalScore);
-                pstmt.setString(10, evaluationDTO.comfortableScore);
-                pstmt.setString(11, evaluationDTO.creditScore);
+                pstmt.setString(5, evaluationDTO.quarterDivide.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(6, evaluationDTO.lectureDivide.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(7, evaluationDTO.evaluationTitle.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(8, evaluationDTO.evaluationContent.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(9, evaluationDTO.totalScore.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(10, evaluationDTO.comfortableScore.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
+                pstmt.setString(11, evaluationDTO.creditScore.replaceAll("<", "&lt;").replaceAll(">", "&gt"));
                 return pstmt.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();
