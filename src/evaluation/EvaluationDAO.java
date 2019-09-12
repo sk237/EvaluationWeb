@@ -42,26 +42,26 @@ public class EvaluationDAO {
             if (lectureDivide.equals("total")) {
                 lectureDivide = "";
             }
-            ArrayList<EvaluationDTO>  evaluationList = null;
-            String SQL = null;
+            ArrayList<EvaluationDTO>  evaluationList = new ArrayList<>();
+            String SQL;
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
             try {
-                SQL = "select * from evaluation";
-//                if(searchType.equals("new")) {
-//                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like " +
-//                            "? order by evaluationID";
-//                } else if (searchType.equals("like")) {
-//                    SQL = "select * from evaluation where lectureDivide like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like " +
-//                            "? order by likeCount" ;
-//                }
+
+                if(searchType.equals("new")) {
+                    SQL = "select * from evaluation where evaluationID like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by evaluationID";
+
+                } else {
+                    SQL = "select * from evaluation where evaluationID like ? and concat(lectureName, profName, evaluationTitle, evaluationContent) like ? order by likeCount";
+
+                }
                 conn = DatabaseUtil.getConnection();
                 pstmt = conn.prepareStatement(SQL);
-//                pstmt.setString(1, "%" + lectureDivide + "%");
-//                pstmt.setString(2, "%" + search + "%");
+                pstmt.setString(1, "%" + lectureDivide + "%");
+                pstmt.setString(2, "%" + search + "%");
                 rs = pstmt.executeQuery();
-                evaluationList = new ArrayList<>();
+
                 while (rs.next()) {
                     EvaluationDTO evaluation = new EvaluationDTO(
                             rs.getInt(1),
@@ -89,7 +89,7 @@ public class EvaluationDAO {
                 try {if (pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
                 try {if (rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
             }
-            return evaluationList; // error
+            return evaluationList;
         }
 
         public int like(String evaluationID) {
@@ -146,7 +146,7 @@ public class EvaluationDAO {
             pstmt.setInt(1, Integer.parseInt(evaluationID));
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 return rs.getString(1);
             }
 

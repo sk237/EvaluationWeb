@@ -24,7 +24,7 @@
 <body>
 <%
   request.setCharacterEncoding("UTF-8");
-  String lectureDivide = "Total";
+  String lectureDivide = "total";
   String searchType = "new";
   String search = "";
 
@@ -112,7 +112,7 @@
       </form>
 
 <%
-      ArrayList<EvaluationDTO> evaluationList = new ArrayList<>();
+      ArrayList<EvaluationDTO> evaluationList;
       evaluationList = new EvaluationDAO().getList(lectureDivide, searchType, search);
 
       while (!evaluationList.isEmpty()) {
